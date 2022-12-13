@@ -4,8 +4,11 @@ TOKEN = "5823312097:AAEk7BcZ2dP7zqghFaI5pbwik6eyvsO7BOY"
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler()
-def echo_test(message:telebot.types.Message):
-    bot.send_message(message.chat.id, "hello")
+@bot.message_handler(commands=['start', 'help'])
+def help(message: telebot.types.Message):
+    text = "Чтобы начать работу введите команду боту в следующем формате:\n <имя валюты> \
+    <в какую валюту перевести>\
+    <количество переводимой валюты>"
+    bot.reply_to(message, text)
 
 bot.polling()
